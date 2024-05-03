@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0; /* กำหนดสีพื้นหลังเป็น #f0f0f0 */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .no-data {
+            font-style: italic;
+            color: #777;
+        }
+
+        /* Style for the button to go back to page1.html */
+        .go-back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .go-back-button:hover {
+            background-color: #555;
+        }
+        .go-back-button {
+            display: inline-block;
+            padding: 5px 20px; /* ปรับขนาดของปุ่ม */
+            background-color: #696969;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 30px; /* เพิ่มความห่างด้านบน */
+            width: 200px; /* ปรับความยาวของปุ่ม */
+            text-align: center; /* จัดข้อความตรงกลาง */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+        }
+        
+        .go-back-button:hover {
+            background-color: #FF3333;
+        }
+        
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Scrape Data from URL</h1>
+    <p>Enter the URL below to scrape data:</p>
+    <form action="/scrape" method="get">
+        <input type="text" id="scrape_url" name="url" required placeholder="Enter URL here">
+        <button type="submit">Scrape Data</button>
+    </form>
+    <h2>Download Excel File</h2>
+    <form action="/download" method="get">
+        <a href="/download" class="download-button">Download Data</a>
+    </form>
+    <h3>Dataframe Contents</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if df is defined %}
+                {% for index, row in df.iterrows() %}
+                <tr>
+                    <td>{{ index }}</td>
+                    <td>{{ row['comment'] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="2" class="no-data">No data available</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <h2>Select a Comment to Predict Emotion</h2>
+<form action="/interactive_prediction" method="post">
+    <label for="comment_choice">Select a comment:</label>
+    <select name="choice" id="comment_choice">
+        {% if df is defined %}
+            {% for index, row in df.iterrows() %}
+                <option value="{{ index + 1 }}">{{ row['comment'] }}</option>
+            {% endfor %}
+        {% else %}
+            <option value="" disabled>No comments available</option>
+        {% endif %}
+    </select>
+    <button type="submit">Predict Emotion</button>
+</form>
+
+{% if plot_filename2 %}
+    <h3>Selected Comment: {{ comment }}</h3>
+    <h3>Emotion Prediction</h3>
+    <img src="{{ plot_filename2 }}" alt="Emotion Probability Distribution">
+{% endif %}
+
+<!-- Button to go back to page1.html -->
+<a href="/" class="go-back-button">Go Back</a>
+
+</body>
+</html>

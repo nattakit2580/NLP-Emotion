@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121; /* เปลี่ยนสีพื้นหลังเป็นสีขาวอ่อน */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333; /* เปลี่ยนสีข้อความให้เข้มขึ้น */
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto 25px; /* เพิ่มระยะห่างด้านล่าง */
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s linear infinite alternate;
+            transition: transform 0.3s ease-out;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 191, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+            }
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: none;
+        }
+        
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff; /* เปลี่ยนสีข้อความให้เป็นสีน้ำเงิน */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* เพิ่มเอฟเฟคเงาให้กับข้อความ */
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .go-back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .go-back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* ส่วนของแสงสี */
+        .light1, .light2, .light3 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            animation-duration: 5s; /* ระยะเวลาที่ใช้ในการทำ Animation */
+            animation-timing-function: linear; /* ลักษณะของการเคลื่อนไหว */
+            animation-iteration-count: infinite; /* ทำให้ Animation เคลื่อนไหวตลอดเวลา */
+        }
+
+        /* รูปที่ 1 */
+        .light1 {
+            background-image: url('../static/emo1.png');
+            top: calc(20% - 10px); /* กำหนดตำแหน่งตามระดับความสูงของหน้าจอ */
+            left: calc(20% - 10px; /* กำหนดตำแหน่งตามระดับความกว้างของหน้าจอ */
+            animation-name: moveLight1; /* เรียกใช้งาน Keyframes */
+        }
+
+        /* รูปที่ 2 */
+        .light2 {
+            background-image: url('../static/emo2.png');
+            top: calc(10% - 90px); /* กำหนดตำแหน่งตามระดับความสูงของหน้าจอ */
+            left: calc(10% - 90px); /* กำหนดตำแหน่งตามระดับความกว้างของหน้าจอ */
+            animation-name: moveLight2; /* เรียกใช้งาน Keyframes */
+        }
+
+        /* รูปที่ 3 */
+        .light3 {
+            background-image: url('../static/emo3.png');
+            top: calc(5% - 5px); /* กำหนดตำแหน่งตามระดับความสูงของหน้าจอ */
+            left: calc(5% - 5px); /* กำหนดตำแหน่งตามระดับความกว้างของหน้าจอ */
+            animation-name: moveLight3; /* เรียกใช้งาน Keyframes */
+        }
+
+        /* Keyframes สำหรับเคลื่อนไหว */
+        @keyframes moveLight1 {
+            0% { transform: translate(-50px, -50px); } /* ตำแหน่งเริ่มต้น */
+            50% { transform: translate(50px, 50px); } /* ตำแหน่งกลาง */
+            100% { transform: translate(-50px, -50px); } /* ตำแหน่งสุดท้าย */
+        }
+
+        @keyframes moveLight2 {
+            0% { transform: translate(50px, 50px); } /* ตำแหน่งเริ่มต้น */
+            50% { transform: translate(-50px, -50px); } /* ตำแหน่งกลาง */
+            100% { transform: translate(50px, 50px); } /* ตำแหน่งสุดท้าย */
+        }
+
+        @keyframes moveLight3 {
+            0% { transform: translate(-50px, 50px); } /* ตำแหน่งเริ่มต้น */
+            50% { transform: translate(50px, -50px); } /* ตำแหน่งกลาง */
+            100% { transform: translate(-50px, 50px); } /* ตำแหน่งสุดท้าย */
+        }
+
+
+        
+        
+        
+
+        
+    </style>
+</head>
+<body>
+    <!-- เพิ่มแสงสี -->
+    <div class="light1"></div>
+    <div class="light2"></div>
+    <div class="light3"></div>
+
+    <div class="container">
+        <h1>Result</h1>
+        <p>Text entered by the user: <strong>{{ text }}</strong></p>
+        <img src="{{ plot_filename }}" alt="Prediction">
+        <h2>Prediction</h2>
+        <ul>
+            {% for label, prob in zip(labels, probs) %}
+                <li><strong>{{ label }}:</strong> {{ prob }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="go-back-button">Go Back</a>
+    </div>
+</body>
+</html>
